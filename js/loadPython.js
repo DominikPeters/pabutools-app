@@ -21,7 +21,11 @@ export async function loadPython() {
     setTimeout(function () {
         loading.innerHTML = "Loading... (80%)";
     }, 300);
-    await micropip.install("pabutools", true);
+    try {
+        await micropip.install("pabutools", true);
+    } catch (e) {
+        console.warn("Some packages could not be installed (non-pure-Python wheels will be skipped):", e.message);
+    }
     await window.pyodide.runPython(`
         import js
         import json
