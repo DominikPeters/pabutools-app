@@ -441,10 +441,17 @@
             <div class="hystmodal__wrap">
                 <div class="hystmodal__window" role="dialog" aria-modal="true">
                     <button data-hystclose class="hystmodal__close">Close</button>
-                    <strong>Properties:</strong>
-                    <div id="committee-info-modal-properties-list"></div>
-                    <strong>Tied winning committees: <button id="compute-tied-committees-button">compute</button> (can be slow)</strong>
-                    <pre id="committee-info-modal-all-committees"></pre>
+                    <h3 id="committee-info-modal-rule-name" class="modal-rule-name"></h3>
+                    <div id="committee-info-stats"></div>
+                    <div id="mes-analytics-section" style="display:none; margin-top: 1em;">
+                        <strong>MES Analytics</strong>
+                        <button id="compute-mes-analytics-button" style="margin-left: 0.5em;">Compute</button>
+                        <div id="mes-analytics-content"></div>
+                    </div>
+                    <details style="margin-top: 1em;">
+                        <summary>Tied budget allocations <button id="compute-tied-allocations-button">Compute</button> <span class="stat-hint">(may be slow)</span></summary>
+                        <pre id="committee-info-modal-all-committees"></pre>
+                    </details>
                 </div>
             </div>
         </div>

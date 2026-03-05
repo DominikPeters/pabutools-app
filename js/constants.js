@@ -1,13 +1,4 @@
-export const properties = {
-    // "pareto": { fullName: "Pareto optimality", shortName: "Pareto" },
-    // "jr": { fullName: "Justified Representation (JR)", shortName: "JR" },
-    // "pjr": { fullName: "Proportional Justified Representation (PJR)", shortName: "PJR" },
-    // "ejr": { fullName: "Extended Justified Representation (EJR)", shortName: "EJR" },
-    // "ejr+": { fullName: "EJR+ without cohesiveness", shortName: "EJR+" },
-    // "fjr": { fullName: "Full Justified Representation (FJR)", shortName: "FJR" },
-    // "priceability": { fullName: "Priceability" },
-    // "core": { fullName: "Core", shortName: "Core" },
-}
+export const properties = {}
 
 export const rules = {
     "av": {
@@ -17,16 +8,11 @@ export const rules = {
         "active": 1
     },
     "mes": {
-        "fullName": "Method of Equal Shares",
+        "fullName": "Method of Equal Shares (cost sat., add1u completion)",
         "shortName": "Equal Shares",
         "command": `completion_by_rule_combination(instance, profile, [exhaustion_by_budget_increase, greedy_utilitarian_welfare], [{"rule": method_of_equal_shares, "rule_params": {"sat_class": Cost_Sat}}, {"sat_class": Cost_Sat}])`,
-        "active": 1
-    },
-    "mes_add1": {
-        "fullName": "Method of Equal Shares (with 'add1' instead of 'add1u')",
-        "shortName": "Equal Shares",
-        "command": "method_of_equal_shares(instance, profile, sat_class=Cost_Sat, voter_budget_increment=1)",
-        "active": 0
+        "active": 1,
+        "mesAnalytics": "Cost_Sat",
     },
     "phragmen": {
         "fullName": "Sequential Phragmén",
@@ -34,29 +20,37 @@ export const rules = {
         "command": "sequential_phragmen(instance, profile)",
         "active": 1
     },
+    "max_welfare": {
+        "fullName": "Max Additive Utilitarian Welfare (cost sat.)",
+        "shortName": "Max Welfare",
+        "command": "max_additive_utilitarian_welfare(instance, profile, sat_class=Cost_Sat, inner_algo=MaxAddUtilWelfareAlgo.PRIMAL_DUAL)",
+        "active": 1
+    },
     "av_card": {
-        "fullName": "Greedy Utilitarian Welfare (cardinality satisfaction)",
+        "fullName": "Greedy Utilitarian Welfare (cardinality sat.)",
         "shortName": "Greedy (card.)",
         "command": "greedy_utilitarian_welfare(instance, profile, sat_class=Cardinality_Sat)",
         "active": 1
     },
     "mes_card": {
-        "fullName": "Method of Equal Shares (cardinality satisfaction)",
+        "fullName": "Method of Equal Shares (cardinality sat.)",
         "shortName": "Equal Shares (card.)",
         "command": "method_of_equal_shares(instance, profile, sat_class=Cardinality_Sat, voter_budget_increment=1)",
-        "active": 1
+        "active": 1,
+        "mesAnalytics": "Cardinality_Sat",
     },
-    "av_cc": { // Chamberlin-Courant, CC_Sat
+    "av_cc": {
         "fullName": "Greedy Chamberlin-Courant",
         "shortName": "Greedy (CC)",
         "command": "greedy_utilitarian_welfare(instance, profile, sat_class=CC_Sat)",
         "active": 1
     },
     "mes_cc": {
-        "fullName": "Method of Equal Shares (CC satisfaction)",
+        "fullName": "Method of Equal Shares (CC sat.)",
         "shortName": "Equal Shares (CC)",
         "command": "method_of_equal_shares(instance, profile, sat_class=CC_Sat, voter_budget_increment=1)",
-        "active": 1
+        "active": 1,
+        "mesAnalytics": "CC_Sat",
     },
 }
 
